@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Facility Comfort Management Dashboard</title>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+  <link rel="stylesheet" href="facility.css">
+</head>
+<body>
+  <h1>Facility Comfort Management</h1>
+
+  <!-- Top Right Navigation Bar -->
+<nav class="nav-top-right">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="dashboard.html">Comfort Zone</a></li>
+    <li><a href="facility.html">Management</a></li>
+  </ul>
+</nav>
+
+<p style="text-align:center;">
+  Visual insights for maintaining optimal temperature and reducing noise in library spaces.</p>
+
+
+  <!-- PMV Comparison chart -->
+  <div style="text-align: center; margin-bottom: 20px;">
+    <button id="toggleComparison">Switch to NC Rating Comparison</button>
+  </div>
+  
+<div id="pmvComparison"; style="margin-bottom: 20px;">
+    <div class="pmv-inner" id="pmvComparisonChart"></div>
+  </div>
+
+  <div style="width: 80%; margin: 0 auto 20px auto; margin-bottom: 40px; padding: 20px; border-radius: 10px; background-color: #f9f9f9; text-align: left; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+    <p><strong>Keys</strong></p>
+    <p><strong>PMV (Predicted Mean Vote):</strong> A thermal comfort index predicting how people perceive temperature, ranging from cold (-3) to hot (+3), with 0 indicating optimal comfort.</p>
+    <p><strong>NC (Noise Criterion):</strong> A measure of background noise level in a space — lower NC ratings mean quieter, more comfortable acoustic environments.</p>
+  </div>
+
+  
+  <!-- 4 Thermal and Acoustic charts -->
+  <h1>Correlation Graphs for each library</h1>
+  <p style="text-align:center;">The relationship between Temperature & PMV, and Noise Level & NC Rating.</p>
+  <div style="text-align: center; margin-bottom: 10px; margin-top: 10px;">
+    <label for="modeMenu">Select View:</label>
+    <select id="modeMenu">
+      <option value="thermal">Thermal Comfort</option>
+      <option value="sound">Acoustic Comfort</option>
+    </select>
+  </div>
+
+  <div class="chart-container" id="chartContainer"></div>
+
+  <div style="width: 80%; margin: 0 auto 20px auto; margin-bottom: 30px; margin-top: 20px; padding: 20px; border-radius: 10px; background-color: #f9f9f9; text-align: left; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+    <p><strong>The Graphs Correlations</strong></p>
+    <p><strong>PMV</strong> and <strong>temperature</strong> have a <strong>positive correlation</strong> — as air temperature increases, PMV values rise, meaning people feel warmer; as temperature decreases, PMV values drop, 
+      and people feel cooler. The <strong>most comfortable PMV range is around 0</strong>, which typically occurs at <strong>21–23°C</strong> under normal clothing and activity levels.</p>
+      <p>
+        The <strong>NC (Noise Criterion) rating</strong> and <strong>noise level (dB)</strong> are 
+        <strong>positively correlated</strong> — as <strong>noise levels in decibels (dB) increase</strong>, 
+        the <strong>NC rating also increases</strong>. A <strong>higher NC rating</strong> means a 
+        <strong>noisier environment</strong>, while a <strong>lower NC rating</strong> (typically below 40) 
+        indicates a <strong>quieter and more comfortable</strong> space for activities like studying.
+      </p>
+      
+  </div>
+
+
+  <script src="facility.js"></script>
+</body>
+</html>

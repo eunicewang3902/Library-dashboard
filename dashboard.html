@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Library Comfort Dashboard</title>
+
+  <!-- Link to external CSS stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- Spacer to push content down slightly -->
+  <div style="margin-top: 20px;"></div>
+
+  <!-- Main page heading -->
+  <h1>Library Comfort Dashboard</h1>
+
+  <!-- Navigation bar positioned top-right for page switching -->
+  <body class="dashboard-page">
+    <nav class="nav-top-right">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="dashboard.html">Comfort Zone</a></li>
+        <li><a href="facility.html">Management</a></li>
+      </ul>
+    </nav>
+
+<!-- Wrapper for centering -->
+<div class="selector-wrapper">
+  <div class="selector-row">
+    <!-- Day Selector -->
+    <label for="daySelector">Select Day Type:</label>
+    <select id="daySelector">
+      <option value="normal">Normal Day</option>
+      <option value="busy">Busy Day</option>
+      <option value="summer">Summer Day</option>
+    </select>
+
+    <!-- Time Selector -->
+    <label for="timeSelector">Select Time:</label>
+    <select id="timeSelector">
+      <option value="00:00">00:00</option>
+      <option value="01:00">01:00</option>
+      <option value="02:00">02:00</option>
+      <option value="03:00">03:00</option>
+      <option value="04:00">04:00</option>
+      <option value="05:00">05:00</option>
+      <option value="06:00">06:00</option>
+      <option value="07:00">07:00</option>
+      <option value="08:00">08:00</option>
+      <option value="09:00">09:00</option>
+      <option value="10:00">10:00</option>
+      <option value="11:00">11:00</option>
+      <option value="12:00">12:00</option>
+      <option value="13:00">13:00</option>
+      <option value="14:00">14:00</option>
+      <option value="15:00">15:00</option>
+      <option value="16:00">16:00</option>
+      <option value="17:00">17:00</option>
+      <option value="18:00">18:00</option>
+      <option value="19:00">19:00</option>
+      <option value="20:00">20:00</option>
+      <option value="21:00">21:00</option>
+      <option value="22:00">22:00</option>
+      <option value="23:00">23:00</option>
+    </select>
+  </div>
+</div>
+
+  <!-- Gradient key showing the color scale for comfort levels -->
+  <div style="
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 30px 0 0 10px;
+    position: absolute;
+    top: 95px;
+    left: 25px;
+    background-color: #f9f9f9;
+    padding: 10px 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    z-index: 999;
+  ">
+    <!-- Title -->
+    <div style="font-weight: bold; font-size: 16px; margin-bottom: 8px;">Comfort Zone Indicator</div>
+
+    <!-- Horizontal gradient bar: red → yellow → green -->
+    <div style="
+      height: 20px;
+      width: 300px;
+      background: linear-gradient(to right, #f44336, #ffeb3b, #4caf50);
+      border-radius: 4px;
+      margin-bottom: 6px;
+    "></div>
+
+    <!-- Labels below gradient for clarity -->
+    <div style="
+      display: flex;
+      justify-content: space-between;
+      width: 300px;
+      font-size: 13px;
+      color: #333;
+    ">
+      <span>Uncomfortable</span>
+      <span>Moderate</span>
+      <span>Comfortable</span>
+    </div>
+  </div>
+
+  <!-- Section showing which library is most comfortable at the selected time -->
+  <div id="mostComfortableSection" style="margin-top: 20px; text-align: center;">
+    <div style="font-size: 22px; font-weight: 500; margin-bottom: 8px;">
+      Most Comfortable Library at <span id="selectedTime">--:--</span>:
+    </div>
+    <div id="mostComfortable" style="font-size: 36px; font-weight: bold; color: #2e7d32;">
+      Loading...
+    </div>
+  </div>
+
+  <!-- Main dashboard containing all heatmap cards -->
+  <div class="dashboard">
+    <!-- Load Plotly.js for rendering heatmaps -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <!-- Each library has its own card with a heading, content block, and heatmap -->
+    <div class="card" id="fisher">
+      <h2>Fisher Library</h2>
+      <div class="content"></div>
+      <div id="fisher-heatmap"></div>
+    </div>
+
+    <div class="card" id="law">
+      <h2>Law Library</h2>
+      <div class="content"></div>
+      <div id="law-heatmap"></div>
+    </div>
+
+    <div class="card" id="scitech">
+      <h2>SciTech Library</h2>
+      <div class="content"></div>
+      <div id="scitech-heatmap"></div>
+    </div>
+
+    <div class="card" id="health">
+      <h2>Health Sciences Library</h2>
+      <div class="content"></div>
+      <div id="health-heatmap"></div>
+    </div>
+  </div>
+
+  <!-- Update charts when time is changed -->
+  <script>
+    document.getElementById('timeSelector').addEventListener('change', updateHeatmaps);
+
+    // On page load, show default heatmaps
+    window.addEventListener('DOMContentLoaded', () => {
+      updateHeatmaps();
+    });
+  </script>
+
+  <!-- Section explaining how to read the heatmaps -->
+  <!-- Key definitions explaining PMV and NC metrics (matching layout) -->
+<div style="
+max-width: 960px;
+margin: 0 auto 80px auto;
+padding: 30px 35px;
+background: #ececec;
+border-radius: 16px;
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+font-family: 'Segoe UI', sans-serif;
+font-size: 15.5px;
+line-height: 1.75;
+color: #333;
+text-align: left;
+">
+<h2 style="
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #0d47a1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+">
+  🗝️ Key Definitions
+</h2>
+
+    <!-- Thermal Comfort Explanation -->
+    <div style="margin-bottom: 18px;">
+      <span style="font-weight: 500; color: #2e7d32;">✅ Thermal Comfort</span> is measured using the 
+      <strong>PMV (Predicted Mean Vote)</strong> scale. A value close to 0 means the temperature 
+      is comfortable. 
+      <span style="color: #4caf50; font-weight: 600;">Green</span> areas on the heatmap show ideal comfort, while 
+      <span style="color: #f44336; font-weight: 600;">red</span> indicates it's too hot or too cold.
+    </div>
+
+    <!-- Acoustic Comfort Explanation -->
+    <div>
+      <span style="font-weight: 500; color: #1565c0;">🔊 Acoustic Comfort</span> is based on the 
+      <strong>NC (Noise Criterion)</strong> rating. Lower values mean quieter environments. 
+      An NC below 40 is recommended for study zones. Again, 
+      <span style="color: #4caf50; font-weight: 600;">green</span> means it's quiet enough, while 
+      <span style="color: #f44336; font-weight: 600;">red</span> suggests it's too noisy.
+    </div>
+  </div>
+
+
+
+
+
+  <!-- Load main JavaScript -->
+  <script src="script.js"></script>
+  <!-- Optionally load Chart.js (not used in this sample) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</body>
+</html>

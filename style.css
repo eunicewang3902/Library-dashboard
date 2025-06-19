@@ -1,0 +1,380 @@
+/* === General body settings === */
+body {
+  font-family: Arial, sans-serif; /* Set a clean, web-safe font */
+  padding: 0px;
+  text-align: center; /* Center-align text by default */
+}
+
+/* === Dashboard grid layout === */
+.dashboard {
+  display: grid; /* Use CSS Grid for a flexible 2-column layout */
+  grid-template-columns: repeat(2, 1fr); /* 2 equal-width columns */
+  gap: 1rem; /* Space between cards */
+  margin: 1rem auto; /* Center horizontally */
+  max-width: 1400px; /* Limit the width of dashboard */
+  justify-content: center;
+}
+
+/* === Card container inside dashboard === */
+
+.card {
+  padding: 1rem;
+  border: 1px solid #ccc; /* Light gray border */
+  border-radius: 8px; /* Rounded corners */
+  background: #f5f5f5; /* Light gray background */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 300px; /* Ensure enough height for both heatmaps */
+  box-sizing: border-box; /* Include padding in height/width */
+}
+
+/* === Heatmap chart inside each card === */
+.card > div[id$="-heatmap"] {
+  width: 100%; /* Responsive width */
+  max-width: 650px; /* Match Plotly chart width */
+  height: 230px; /* Match your Plotly layout height */
+  margin: 0 auto;
+}
+
+/* === Title inside card === */
+.card h2 {
+  margin-bottom: 1rem;
+}
+
+/* === Info box inside card (emoji/comfort box) === */
+.card .content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem; /* Vertical spacing between elements */
+}
+
+/* === Label for day & time selector dropdown === */
+
+.selector-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.selector-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.selector-row label {
+  font-size: 18px;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.selector-row select {
+  font-size: 18px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+
+
+
+/* === PMV Line Chart styling === */
+#pmvLineChart {
+  width: 100% !important;       /* Make responsive */
+  height: auto !important;      /* Keep aspect ratio */
+}
+
+/* === Universal reset for spacing and sizing === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Ensure padding/border doesn't affect size */
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+/* === Header image section === */
+.header {
+  position: relative;
+  width: 100vw;
+  height: 90vh; /* Covers 90% of viewport height */
+  overflow: hidden;
+  top: 0;
+  border-bottom-left-radius: 80px; /* Decorative bottom curve */
+}
+
+
+
+/* === Background image settings === */
+.hero-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Fill container without stretching */
+  z-index: 0; /* Behind overlay and text */
+}
+
+.header {
+  position: relative;
+  text-align: center;
+}
+
+.text-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white; /* Optional for better visibility */
+  z-index: 2; /* Ensure it's above the overlay/image */
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.hero-img {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+}
+
+
+/* === Dark overlay over image for readability === */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(4, 9, 30, 0.7); /* Semi-transparent black */
+  z-index: 1;
+}
+
+/* === Text box centered over hero image === */
+.text-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Center horizontally and vertically */
+  color: #fff;
+  text-align: center;
+  z-index: 2; /* Above overlay and image */
+}
+
+.text-box h1 {
+  font-size: 48px;
+}
+
+.text-box p {
+  font-size: 16px;
+  margin: 10px 0 60px; /* Bottom margin pushes the button down */
+}
+
+/* === Button styling below hero text === */
+.hero-btn {
+  margin-top: 30px;
+  padding: 15px 35px;
+  color: #fff;
+  border: 1px solid #fff;
+  text-decoration: none;
+  background: transparent;
+  font-size: 14px;
+  cursor: pointer;
+  display: inline-block;
+  border-radius: 30px;
+  position: relative;
+  transition: background 0.5s, border-color 0.5s;
+}
+
+/* === Button hover style === */
+.hero-btn:hover {
+  background: #4FA1CA; /* Light blue on hover */
+  border-color: #4FA1CA;
+}
+
+/* === Arrow effect on hover === */
+.hero-btn::after {
+  content: '  →';
+  position: relative;
+  left: 0;
+  transition: left 0.3s ease;
+}
+
+.hero-btn:hover::after {
+  left: 5px; /* Slide the arrow slightly on hover */
+}
+
+/* === Footer styling === */
+.footer {
+  width: 100%;
+  text-align: center;
+  padding: 40px 0;
+  background-color: #ebf0f8; /* Light blue-gray background */
+  font-family: Arial, sans-serif;
+  border-top-left-radius: 80px;
+  border-top-right-radius: 80px;
+}
+
+.footer h4 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #4FA1CA; /* Matching blue highlight */
+}
+
+.footer p {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 25px;
+}
+
+/* === Social media icons in footer === */
+.social-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+/* Base icon style */
+.fa {
+  padding: 15px;
+  font-size: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  text-align: center;
+  text-decoration: none;
+  line-height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+/* Hover fade effect */
+.fa:hover {
+  opacity: 0.8;
+}
+
+/* Brand-specific background colors */
+.fa-facebook { background: #3B5998; }
+.fa-twitter { background: #55ACEE; }
+.fa-google { background: #dd4b39; }
+.fa-youtube { background: #bb0000; }
+.fa-instagram { background: #125688; }
+
+/* === Top nav bar fixed to top right === */
+.nav-top-right {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  z-index: 1000;
+}
+
+/* Nav bar list */
+.nav-top-right ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 24px;
+}
+
+/* Nav link style */
+.nav-top-right ul li a {
+  text-decoration: none;
+  color: #ffffff; /* White by default (used on home page) */
+  font-weight: 500;
+  font-size: 15px;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+/* Hover underline effect */
+.nav-top-right ul li a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  background-color: #0077cc;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+/* Show line on hover */
+.nav-top-right ul li a:hover::after {
+  transform: scaleX(1);
+}
+
+/* === Page-specific nav color overrides === */
+.dashboard-page .nav-top-right ul li a {
+  color: #000; /* Black nav links for dashboard page */
+}
+
+.home-page .nav-top-right ul li a {
+  color: #fff; /* White nav links for home page */
+}
+
+
+
+
+
+/* Index.html interaction */
+.text-box h1 {
+  animation: fadeDown 1s ease-in-out forwards;
+  opacity: 0;
+}
+.text-box p {
+  animation: fadeUp 1.5s ease-in-out forwards;
+  opacity: 0;
+}
+.hero-btn {
+  animation: fadeIn 2s ease-in-out forwards;
+  opacity: 0;
+}
+
+@keyframes fadeDown {
+  from { transform: translateY(-30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+@keyframes fadeUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+section div[style*="box-shadow"]:hover {
+  transform: translateY(-5px);
+  transition: transform 0.3s ease;
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15) !important;
+}
+
+
+

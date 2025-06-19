@@ -1,0 +1,123 @@
+/* === Basic Page Setup === */
+body {
+  font-family: Arial, sans-serif; /* Clean, readable sans-serif font */
+  padding: 20px;                  /* Add spacing around page content */
+  background-color: #f5f5f5;      /* Light gray background for subtle contrast */
+}
+
+/* === Page Title === */
+h1 {
+  text-align: center; /* Center-align the main heading */
+}
+
+/* === Chart Grid Container === */
+.chart-container {
+  display: grid;                        /* Use CSS Grid for flexible layout */
+  grid-template-columns: repeat(2, 1fr); /* 2 equal-width columns */
+  gap: 40px;                            /* Space between grid items */
+  justify-content: center;             /* Center the grid in the container */
+  margin-top: 40px;                    /* Add space above the charts */
+}
+
+/* === Each Chart Box === */
+.chart-box {
+  background-color: white;                    /* White card background */
+  padding: 20px;                              /* Inner spacing */
+  border-radius: 12px;                        /* Rounded corners */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);   /* Subtle shadow for elevation */
+  box-sizing: border-box;                     /* Includes padding in width/height */
+}
+
+/* === Chart Title Styling === */
+.chart-title {
+  text-align: center;       /* Center the title inside the box */
+  margin-bottom: 10px;      /* Spacing below the title */
+  font-weight: bold;        /* Make it stand out */
+}
+
+/* === Buttons and Dropdown Styling === */
+button, select {
+  padding: 10px 20px;           /* Inner spacing */
+  font-size: 14px;              /* Text size */
+  border: none;                 /* Remove default border */
+  border-radius: 8px;           /* Rounded corners */
+  cursor: pointer;              /* Pointer cursor on hover */
+  background-color: #4FA1CA;    /* Primary blue color */
+  color: white;                 /* White text */
+  transition: background-color 0.3s ease; /* Smooth hover transition */
+}
+
+/* === Hover Effect for Button and Dropdown === */
+button:hover, select:hover {
+  background-color: #3b88a9; /* Darker blue on hover */
+}
+
+/* === Additional Styling for <select> Element === */
+select {
+  background-color: #4FA1CA;  /* Match button color */
+  color: white;
+  border-radius: 8px;
+  margin-left: 10px;          /* Space between label and dropdown */
+}
+
+/* === PMV Line Chart Comparison Container === */
+#pmvComparison {
+  background-color: white;                    /* White card background */
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);   /* Card shadow */
+  margin: 40px auto 0 auto;                   /* Center it with spacing on top */
+  display: flex;                              /* Center contents horizontally */
+  justify-content: center;
+}
+
+/* === Inner Wrapper for PMV Chart === */
+.pmv-inner {
+  width: 100%;
+  max-width: 1200px; /* Prevents chart from stretching too wide */
+}
+
+/* === Top Navigation Bar === */
+.nav-top-right {
+  position: absolute; /* Place it on top-right of the screen */
+  top: 20px;
+  right: 40px;
+  z-index: 1000; /* Keep it above other content */
+}
+
+/* === Nav List Styling === */
+.nav-top-right ul {
+  list-style: none; /* Remove default bullets */
+  margin: 0;
+  padding: 0;
+  display: flex;     /* Horizontal nav items */
+  gap: 24px;         /* Spacing between links */
+}
+
+/* === Nav Link Styling === */
+.nav-top-right ul li a {
+  text-decoration: none;       /* Remove underline */
+  color: #464646;              /* Dark gray text */
+  font-weight: 500;
+  font-size: 15px;
+  position: relative;          /* Required for hover effect */
+  transition: color 0.2s ease; /* Smooth color transition */
+}
+
+/* === Underline Animation on Hover === */
+.nav-top-right ul li a::after {
+  content: '';                         /* Decorative underline */
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  background-color: #0077cc;          /* Blue underline */
+  transform: scaleX(0);               /* Hidden by default */
+  transform-origin: left;
+  transition: transform 0.3s ease;    /* Animate on hover */
+}
+
+.nav-top-right ul li a:hover::after {
+  transform: scaleX(1); /* Reveal underline on hover */
+}
